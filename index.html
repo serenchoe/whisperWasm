@@ -34,7 +34,7 @@
             Usage instructions:<br>
             <ul>
                 <li>Load a ggml model file (you can obtain one from <a href="https://ggml.ggerganov.com/">here</a>, recommended: <b>tiny</b> or <b>base</b>)</li>
-                <li>Select audio file to transcribe or record audio from the microphone (sample: <a href="http://192.168.1.117/jfk.wav">jfk.wav</a>)</li>
+                <li>Select audio file to transcribe or record audio from the microphone (sample: <a href="https://serenchoe.github.io/whisperWasm/jfk.wav">jfk.wav</a>)</li>
                 <li>Click on the "Transcribe" button to start the transcription</li>
             </ul>
 
@@ -47,11 +47,11 @@
                 </ul>
 
             <b>More examples:</b>
-                <a href="http://192.168.1.117/">main</a> |
-                <a href="http://192.168.1.117/bench">bench</a> |
-                <a href="http://192.168.1.117/stream">stream</a> |
-                <a href="http://192.168.1.117/command">command</a> |
-                <a href="http://192.168.1.117/talk">talk</a> |
+                <a href="https://serenchoe.github.io/whisperWasm/">main</a> |
+                <a href="https://serenchoe.github.io/whisperWasm/bench">bench</a> |
+                <a href="https://serenchoe.github.io/whisperWasm/stream">stream</a> |
+                <a href="https://serenchoe.github.io/whisperWasm/command">command</a> |
+                <a href="https://serenchoe.github.io/whisperWasm/talk">talk</a> |
 
             <hr>
 
@@ -338,22 +338,22 @@
 
             function loadWhisper(model) {
                 let urls = {
-                    'tiny.en':  'http://192.168.1.117/ggml-model-whisper-tiny.en.bin',
-                    'tiny':     'http://192.168.1.117/ggml-model-whisper-tiny.bin',
-                    'base.en':  'http://192.168.1.117/ggml-model-whisper-base.en.bin',
-                    'base':     'http://192.168.1.117/ggml-model-whisper-base.bin',
-                    'small.en': 'http://192.168.1.117/ggml-model-whisper-small.en.bin',
-                    'small':    'http://192.168.1.117/ggml-model-whisper-small.bin',
+                    'tiny.en':  'https://drive.google.com/file/d/1V1cyOFqQm9a-Ji3hBVOZg5ZusBIF_AKD/view?usp=sharing',
+                    'tiny':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny.bin',
+                    'base.en':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.en.bin',
+                    'base':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.bin',
+                    'small.en': 'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.en.bin',
+                    'small':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.bin',
 
-                    'tiny-en-q5_1':  'http://192.168.1.117/ggml-model-whisper-tiny.en-q5_1.bin',
-                    'tiny-q5_1':     'http://192.168.1.117/ggml-model-whisper-tiny-q5_1.bin',
-                    'base-en-q5_1':  'http://192.168.1.117/ggml-model-whisper-base.en-q5_1.bin',
-                    'base-q5_1':     'http://192.168.1.117/ggml-model-whisper-base-q5_1.bin',
-                    'small-en-q5_1': 'http://192.168.1.117/ggml-model-whisper-small.en-q5_1.bin',
-                    'small-q5_1':    'http://192.168.1.117/ggml-model-whisper-small-q5_1.bin',
-                    'medium-en-q5_0':'http://192.168.1.117/ggml-model-whisper-medium.en-q5_0.bin',
-                    'medium-q5_0':   'http://192.168.1.117/ggml-model-whisper-medium-q5_0.bin',
-                    'large-q5_0':    'http://192.168.1.117/ggml-model-whisper-large-q5_0.bin',
+                    'tiny-en-q5_1':  'https://drive.google.com/file/d/15uepCyK63DMF40nnniua7kfvi4-JvTNy/view?usp=sharing',
+                    'tiny-q5_1':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny-q5_1.bin',
+                    'base-en-q5_1':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.en-q5_1.bin',
+                    'base-q5_1':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base-q5_1.bin',
+                    'small-en-q5_1': 'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.en-q5_1.bin',
+                    'small-q5_1':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small-q5_1.bin',
+                    'medium-en-q5_0':'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-medium.en-q5_0.bin',
+                    'medium-q5_0':   'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-medium-q5_0.bin',
+                    'large-q5_0':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-large-q5_0.bin',
                 };
 
                 let sizes = {
