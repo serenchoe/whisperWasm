@@ -34,7 +34,7 @@
             Usage instructions:<br>
             <ul>
                 <li>Load a ggml model file (you can obtain one from <a href="https://ggml.ggerganov.com/">here</a>, recommended: <b>tiny</b> or <b>base</b>)</li>
-                <li>Select audio file to transcribe or record audio from the microphone (sample: <a href="https://serenchoe.github.io/whisperWasm/jfk.wav">jfk.wav</a>)</li>
+                <li>Select audio file to transcribe or record audio from the microphone (sample: <a href="https://stagingpc.view.dhcth.link/jfk.wav">jfk.wav</a>)</li>
                 <li>Click on the "Transcribe" button to start the transcription</li>
             </ul>
 
@@ -47,11 +47,11 @@
                 </ul>
 
             <b>More examples:</b>
-                <a href="https://serenchoe.github.io/whisperWasm/">main</a> |
-                <a href="https://serenchoe.github.io/whisperWasm/bench">bench</a> |
-                <a href="https://serenchoe.github.io/whisperWasm/stream">stream</a> |
-                <a href="https://serenchoe.github.io/whisperWasm/command">command</a> |
-                <a href="https://serenchoe.github.io/whisperWasm/talk">talk</a> |
+                <a href="https://stagingpc.view.dhcth.link/">main</a> |
+                <a href="https://stagingpc.view.dhcth.link/bench">bench</a> |
+                <a href="https://stagingpc.view.dhcth.link/stream">stream</a> |
+                <a href="https://stagingpc.view.dhcth.link/command">command</a> |
+                <a href="https://stagingpc.view.dhcth.link/talk">talk</a> |
 
             <hr>
 
@@ -338,22 +338,22 @@
 
             function loadWhisper(model) {
                 let urls = {
-                    'tiny.en':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny.en.bin',
-                    'tiny':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny.bin',
-                    'base.en':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.en.bin',
-                    'base':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.bin',
-                    'small.en': 'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.en.bin',
-                    'small':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.bin',
+                    'tiny.en':  'https://stagingpc.view.dhcth.link/ggml-model-whisper-tiny.en.bin',
+                    'tiny':     'https://stagingpc.view.dhcth.link/ggml-model-whisper-tiny.bin',
+                    'base.en':  'https://stagingpc.view.dhcth.link/ggml-model-whisper-base.en.bin',
+                    'base':     'https://stagingpc.view.dhcth.link/ggml-model-whisper-base.bin',
+                    'small.en': 'https://stagingpc.view.dhcth.link/ggml-model-whisper-small.en.bin',
+                    'small':    'https://stagingpc.view.dhcth.link/ggml-model-whisper-small.bin',
 
-                    'tiny-en-q5_1':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny.en-q5_1.bin',
-                    'tiny-q5_1':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-tiny-q5_1.bin',
-                    'base-en-q5_1':  'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base.en-q5_1.bin',
-                    'base-q5_1':     'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-base-q5_1.bin',
-                    'small-en-q5_1': 'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small.en-q5_1.bin',
-                    'small-q5_1':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-small-q5_1.bin',
-                    'medium-en-q5_0':'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-medium.en-q5_0.bin',
-                    'medium-q5_0':   'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-medium-q5_0.bin',
-                    'large-q5_0':    'https://serenchoe.github.io/whisperWasm/ggml-model-whisper-large-q5_0.bin',
+                    'tiny-en-q5_1':  'https://stagingpc.view.dhcth.link/ggml-model-whisper-tiny.en-q5_1.bin',
+                    'tiny-q5_1':     'https://stagingpc.view.dhcth.link/ggml-model-whisper-tiny-q5_1.bin',
+                    'base-en-q5_1':  'https://stagingpc.view.dhcth.link/ggml-model-whisper-base.en-q5_1.bin',
+                    'base-q5_1':     'https://stagingpc.view.dhcth.link/ggml-model-whisper-base-q5_1.bin',
+                    'small-en-q5_1': 'https://stagingpc.view.dhcth.link/ggml-model-whisper-small.en-q5_1.bin',
+                    'small-q5_1':    'https://stagingpc.view.dhcth.link/ggml-model-whisper-small-q5_1.bin',
+                    'medium-en-q5_0':'https://stagingpc.view.dhcth.link/ggml-model-whisper-medium.en-q5_0.bin',
+                    'medium-q5_0':   'https://stagingpc.view.dhcth.link/ggml-model-whisper-medium-q5_0.bin',
+                    'large-q5_0':    'https://stagingpc.view.dhcth.link/ggml-model-whisper-large-q5_0.bin',
                 };
 
                 let sizes = {
