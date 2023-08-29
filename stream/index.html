@@ -266,61 +266,42 @@
                 var chunks = [];
                 var stream = null;
 
+                var audioContext = null;
+
                 navigator.mediaDevices.getUserMedia({audio: true, video: false})
                     .then(function(s) {
                         stream = s;
-                        mediaRecorder = new MediaRecorder(stream);
-                        mediaRecorder.ondataavailable = function(e) {
-                            chunks.push(e.data);
+                        audioContext = new AudioContext({ sampleRate: 16000 });
+                        const sourceNode = audioContext.createMediaStreamSource(s);
+                        audioContext.audioWorklet.addModule('captionWhisperAudioWorklet.js').then(() => {
+                            try {
+                                const processorNode = new AudioWorkletNode(audioContext, 'CaptionsWhisperPcmProcessor', {
+                                    // parameterData: { chunkSize: 4096 }
+                                    parameterData: { chunkSize: 160000 }
+                                });
 
-                            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-                            var reader = new FileReader();
-
-                            reader.onload = function(event) {
-                                var buf = new Uint8Array(reader.result);
-
-                                if (!context) {
-                                    return;
-                                }
-                                context.decodeAudioData(buf.buffer, function(audioBuffer) {
-                                    var offlineContext = new OfflineAudioContext(audioBuffer.numberOfChannels, audioBuffer.length, audioBuffer.sampleRate);
-                                    var source = offlineContext.createBufferSource();
-                                    source.buffer = audioBuffer;
-                                    source.connect(offlineContext.destination);
-                                    source.start(0);
-
-                                    offlineContext.startRendering().then(function(renderedBuffer) {
-                                        audio = renderedBuffer.getChannelData(0);
-
-                                        //printTextarea('js: audio recorded, size: ' + audio.length + ', old size: ' + (audio0 == null ? 0 : audio0.length));
-
-                                        var audioAll = new Float32Array(audio0 == null ? audio.length : audio0.length + audio.length);
-                                        if (audio0 != null) {
-                                            audioAll.set(audio0, 0);
-                                        }
-                                        audioAll.set(audio, audio0 == null ? 0 : audio0.length);
-
+                                processorNode.port.onmessage = (event) => {
+                                    if (event.data.error) {
+                                        console.log(`Error processing PCM audio: ${event.data.error}`);
+                                    } else {
                                         if (instance) {
-                                            Module.set_audio(instance, audioAll);
+                                            const float32array = new Float32Array(event.data.chunk);
+                                            Module.set_audio(instance, float32array);
                                         }
-                                    });
-                                }, function(e) {
-                                    audio = null;
+                                    }
+                                };
+
+                                sourceNode.connect(processorNode);
+                                processorNode.connect(audioContext.destination);
+
+                                audioContext.resume().then(() => {
+                                    console.log('AudioContext for captioning resumed');
                                 });
+                            } catch (error) {
+                                console.log(`Error setting up audio worklet: ${error}`);
+                                return;
                             }
-
-                            reader.readAsArrayBuffer(blob);
-                        };
-
-                        mediaRecorder.onstop = function(e) {
-                            if (doRecording) {
-                                setTimeout(function() {
-                                    startRecording();
-                                });
-                            }
-                        };
-
-                        mediaRecorder.start(kIntervalAudio_ms);
+                        })
                     })
                     .catch(function(err) {
                         printTextarea('js: error getting audio stream: ' + err);
@@ -329,15 +310,14 @@
                 var interval = setInterval(function() {
                     if (!doRecording) {
                         clearInterval(interval);
-                        mediaRecorder.stop();
+                        audioContext.suspend();
                         stream.getTracks().forEach(function(track) {
                             track.stop();
                         });
-
+                        
                         document.getElementById('start').disabled = false;
                         document.getElementById('stop').disabled  = true;
 
-                        mediaRecorder = null;
                     }
 
                     // if audio length is more than kRestartRecording_s seconds, restart recording
@@ -348,7 +328,7 @@
                             clearInterval(interval);
                             audio0 = audio;
                             audio = null;
-                            mediaRecorder.stop();
+                            audioContext.suspend();
                             stream.getTracks().forEach(function(track) {
                                 track.stop();
                             });
